@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Personal page</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h1>Личная страница</h1>
+<br/><br/>
+<div>
+
+  <h2>Добро пожаловать на личную страницу пользователя <span th:text="${user.getUsername()}">VALUE</span> </h2>
+
+    <table border="1">
+        <tr>
+            <th>---ID---</th>
+            <th>---Username---</th>
+            <th>---Email---</th>
+            <th>---Password---</th>
+            <th>---Roles---</th>
+        </tr>
+        <tr th:each ="user : ${user}">
+            <td th:text="${user.getId()}"></td>
+            <td th:text="${user.getUsername()}"></td>
+            <td th:text="${user.getEmail()}"></td>
+            <td th:text="${user.getPassword()}"></td>
+            <td th:text="${user.roleToString()}"></td>
+        </tr>
+    </table>
+   <p> Вернуться на <a href="/">главную страницу</a></p>
+  <br/><br/>
+   <form th:method="POST" th:action="@{/logout}">
+    <input type="submit" value="Logout!"/>
+  </form>
+
+</div>
+</body>
+</html>

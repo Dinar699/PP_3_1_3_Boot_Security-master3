@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Add user</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h1>Добавление пользователя</h1>
+<br/><br/>
+<div>
+<form th:method="POST" th:action="@{/admin}" th:object="${user}">
+    <label for="username">Введите имя пользователя: </label>
+    <input type="text" th:field="*{username}" id="username"/>
+    <div style="color:red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">User error</div>
+    <br/><br/>
+    <label for="email">Введите Email: </label>
+    <input type="text" th:field="*{email}" id="email"/>
+    <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email error</div>
+    <br/><br/>
+    <label for="password">Введите пароль: </label>
+    <input type="password" th:field="*{password}" id="password"/>
+    <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error</div>
+
+    <br/><br/>
+
+    <p>
+        <label>Roles:
+            <input type="checkbox" name="roles"
+                   th:each="role : ${roles}"
+                   th:text="${role.name}"
+                   th:value="${role.id}"
+                   th:field="*{roleList}"/>
+        </label>
+    </p>
+    <input type="submit" value="Добавить пользователя"/>
+</form>
+    <p> Вернуться к  <a href="/admin/users"> списку пользователей</a></p>
+    <form th:method="POST" th:action="@{/logout}">
+        <input type="submit" value="Logout!"/>
+    </form>
+</div>
+</body>
+</html>
