@@ -8,7 +8,7 @@ import ru.kata.spring.boot_security.demo.model.User;
 import java.util.List;
 
 @Component
-public interface UserService extends UserDetailsService {
+public interface UserService {
 
     User findUserById(Long id);
     List<User> allUsers();

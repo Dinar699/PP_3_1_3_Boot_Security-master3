@@ -59,11 +59,9 @@ public class AdminController {
 
 	@GetMapping("/{id}/update")
 	public String edit(Model model, @PathVariable("id") Long id) {
-		User user = userService.findUserById(id);
-		model.addAttribute("user", user);
-		Set<Role> roles = (Set<Role>) roleService.getAllRoles();
-		model.addAttribute("roles", roles);
-		return "/update";
+		model.addAttribute("user", userService.findUserById(id));
+		model.addAttribute("roles", roleService.getAllRoles());
+		return "update";
 	}
 
 	@PatchMapping("/{id}")
